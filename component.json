@@ -1,0 +1,27 @@
+{
+  "name": "notablemind",
+  "repo": "notablemind/notablemind",
+  "description": "The main notablemind app",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "notablemind/dropicon": "*",
+    "notablemind/input-tree": "*",
+    "notablemind/tags": "*",
+    "notablemind/note": "*",
+    "lodash/lodash": "*"
+  },
+  "development": {
+    "notablemind/note-theme-simple": "*",
+    "notablemind/note-manager": "*",
+    "notablemind/tree": "*"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ],
+  "styles": [
+    "notablemind.css"
+  ]
+}
