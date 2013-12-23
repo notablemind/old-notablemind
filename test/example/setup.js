@@ -1,10 +1,59 @@
 
 var Note = require('note')
-  , Manager = require('note-manager')
+  , Manager = require('idb-manager')
+  , NoteManager = require('note-manager')
   , Tree = require('tree')
 
-React.renderComponent(Note({}), document.getElementById('simple'))
-React.renderComponent(Note({themeClass: 'simple-theme'}), document.getElementById('themed'))
+  , bongo = require('bongo.js')
+
+bongo.db({
+  name: 'notablemind',
+  collections: ['notes']
+})
+
+
+var man = NoteManager(Manager, bongo.db('notablemind').collection('notes'), {})
+  , tree = Tree({
+      manager: man,
+      head: Note,
+      headProps: {
+        themeClass: 'simple-theme',
+        keymap: {
+          moveLeft: 'alt left',
+          moveRight: 'alt right',
+          moveDown: 'alt down',
+          moveUp: 'alt up',
+
+          newNode: 'return',
+          newAfter: 'shift return',
+          goDown: 'down',
+          goUp: 'up',
+        }
+      },
+      id: '0',
+    })
+
+document.getElementById('clear').addEventListener('click', function () {
+  bongo.db('notablemind').collection('notes').remove({}, function (err, d) {
+    console.log(err, d, 'remove')
+  })
+})
+document.getElementById('fill').addEventListener('click', function () {
+  var data = {
+      id: '0',
+      data: {
+        text: 'TestHead',
+        tags: [],
+        type: 'title'
+      },
+      children: rTree(0, 3)
+    } // big test is rTree(0, 3, 6)
+  man.dump(data)
+})
+
+// React.renderComponent(Note({}), document.getElementById('simple'))
+// React.renderComponent(Note({themeClass: 'simple-theme'}), document.getElementById('themed'))
+React.renderComponent(tree, document.getElementById('tree'))
 
 function rid() {
   var chars = 'abcdef0123456789'
@@ -34,6 +83,7 @@ function rTree(idx, depth, fixed) {
   return children
 }
 
+/*
 React.renderComponent(Tree({
   manager: new Manager({
     id: 0,
@@ -61,4 +111,5 @@ React.renderComponent(Tree({
   },
   id: 0,
 }), document.getElementById('tree'))
+*/
 

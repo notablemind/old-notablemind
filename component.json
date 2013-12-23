@@ -15,6 +15,7 @@
   "development": {
     "notablemind/note-theme-simple": "*",
     "notablemind/note-manager": "*",
+    "notablemind/idb-manager": "*",
     "notablemind/tree": "*"
   },
   "license": "MIT",
