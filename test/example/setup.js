@@ -19,15 +19,15 @@ var man = NoteManager(Manager, bongo.db('notablemind').collection('notes'), {})
       headProps: {
         themeClass: 'simple-theme',
         keymap: {
-          moveLeft: 'alt left',
-          moveRight: 'alt right',
-          moveDown: 'alt down',
-          moveUp: 'alt up',
+          moveLeft: 'alt left|alt shift h',
+          moveRight: 'alt right|alt shift l',
+          moveDown: 'alt down|alt shift j',
+          moveUp: 'alt up|alt shift k',
 
           newNode: 'return',
           newAfter: 'shift return',
-          goDown: 'down',
-          goUp: 'up',
+          goDown: 'down|alt j',
+          goUp: 'up|alt k',
         }
       },
       id: '0',
